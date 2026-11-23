@@ -457,3 +457,8 @@ main{animation:pageIn .45s ease both}
 @keyframes badgePulse{0%{box-shadow:0 0 0 0 rgba(255,176,32,.55)}70%{box-shadow:0 0 0 6px rgba(255,176,32,0)}100%{box-shadow:0 0 0 0 rgba(255,176,32,0)}}
 @media(max-width:480px){.stickybar{left:8px;right:8px;border-radius:20px}.stickybar a .tab-lb{font-size:10.5px}}
 @media (prefers-reduced-motion: reduce){.stickybar,.stickybar a,.bar-pill,.tab-badge{animation:none!important;transition:none!important}}
+
+/* === TEACHER EXPERIENCE === */
+.teacher-card{background:linear-gradient(160deg,#fff,#FFF6EC);border:1px solid #FFE3C2;border-radius:22px;padding:26px 24px;box-shadow:0 14px 30px -18px rgba(242,98,15,.35)}
+.exp-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.exp-chip{background:#fff;border:1px solid #FFD9AE;color:#7A3E00;font-weight:700;font-size:14px;padding:8px 13px;border-radius:999px}
