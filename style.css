@@ -504,13 +504,21 @@ body:not(.pill-ready) .stickybar a.tab-active{background:linear-gradient(150deg,
 .gal-link img{transition:transform .35s ease}
 .gal-link:active img{transform:scale(1.04)}
 
-/* === FIX v4 — teacher card contrast: dark mode me white text white card par dikhta nahi tha === */
-.teacher-card h2{color:#0F1B3D}
-.teacher-card p{color:#3A4A6B}
-.teacher-card p b{color:#0F1B3D}
+/* === FIX v5 — teacher card GUARANTEE: ek hi fixed scheme dono mode me === */
+/* Screenshot bug ki wajah: dark mode me --ink (#F1F4FF, near-white) halke cream card par aa gaya tha. */
+/* Isliye card ka background AUR text dono FIXED hain — koi variable, koi media query inhe badal nahi sakti. */
+.teacher-card{background:linear-gradient(160deg,#FFFFFF,#FFF6EC)!important;border:1px solid #FFE3C2!important;box-shadow:0 14px 30px -18px rgba(242,98,15,.35)!important}
+.teacher-card h2,.teacher-card h2 .hi{color:#0F1B3D!important}
+.teacher-card p{color:#3A4A6B!important}
+.teacher-card p b{color:#0F1B3D!important}
+.teacher-card .tag{background:#FFE9C9!important;color:#B64A00!important;border-color:#FFC98A!important}
+.teacher-card .exp-chip{background:#FFFFFF!important;color:#7A3E00!important;border-color:#FFD9AE!important}
 @media (prefers-color-scheme: dark){
- .teacher-card{background:linear-gradient(160deg,#16294F,#0A173E);border-color:#2A4396;box-shadow:0 14px 30px -18px rgba(0,0,0,.6)}
- .teacher-card h2{color:#F1F4FF}
- .teacher-card p{color:#C9D5F2}
- .teacher-card p b{color:#fff}
+ .teacher-card{background:linear-gradient(160deg,#FFFFFF,#FFF6EC)!important;border-color:#FFE3C2!important;box-shadow:0 14px 30px -18px rgba(242,98,15,.35)!important}
+ .teacher-card h2,.teacher-card h2 .hi{color:#0F1B3D!important}
+ .teacher-card p{color:#3A4A6B!important}
+ .teacher-card p b{color:#0F1B3D!important}
 }
+/* Contact page: ab ek hi Contact Details card — poori width */
+.contact-grid{grid-template-columns:1fr!important}
+.contact-grid .addr{grid-column:1/-1}
