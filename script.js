@@ -269,13 +269,16 @@
   var pageId = document.body.getAttribute("data-page") || "top";
   var tabByPage = {"top":"top","courses":"courses","typing":"typing","enquiry":"enquiry"}; /* contact has no tab, pill hides */
   var bar = document.querySelector(".stickybar"), pill = document.querySelector(".bar-pill");
-  function movePill(){
+  function movePill(instant){
     if (!bar || !pill) return;
     var active = bar.querySelector("a.tab-active");
     if (!active){ pill.classList.add("hide"); return; }
     pill.classList.remove("hide");
+    if (instant) pill.classList.add("no-anim");
     pill.style.left = active.offsetLeft + "px";
     pill.style.width = active.offsetWidth + "px";
+    document.body.classList.add("pill-ready");
+    if (instant) requestAnimationFrame(function(){ requestAnimationFrame(function(){ pill.classList.remove("no-anim"); }); });
   }
   document.querySelectorAll(".stickybar a[data-tab]").forEach(function(a){
     a.classList.remove("tab-active");
@@ -289,12 +292,16 @@
       if (a.hasAttribute("data-tab")){
         document.querySelectorAll(".stickybar a.tab-active").forEach(function(x){ x.classList.remove("tab-active"); });
         a.classList.add("tab-active"); movePill();
+        window.setTimeout(function(){ movePill(); }, 250);
       }
     });
   });
-  window.addEventListener("resize", movePill);
-  window.addEventListener("load", function(){ window.setTimeout(movePill, 60); });
-  movePill();
+  window.addEventListener("resize", function(){ movePill(); });
+  window.addEventListener("orientationchange", function(){ window.setTimeout(function(){ movePill(true); }, 150); });
+  window.addEventListener("load", function(){ window.setTimeout(function(){ movePill(true); }, 350); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function(){ movePill(true); });
+  if (bar) bar.addEventListener("animationend", function(){ movePill(true); });
+  movePill(true);
 
   var yr = $("yr"); if (yr) yr.textContent = new Date().getFullYear();
   var tt = $("tickerTrack"); if (tt) tt.innerHTML += tt.innerHTML;

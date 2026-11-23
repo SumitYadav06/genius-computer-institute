@@ -462,3 +462,44 @@ main{animation:pageIn .45s ease both}
 .teacher-card{background:linear-gradient(160deg,#fff,#FFF6EC);border:1px solid #FFE3C2;border-radius:22px;padding:26px 24px;box-shadow:0 14px 30px -18px rgba(242,98,15,.35)}
 .exp-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
 .exp-chip{background:#fff;border:1px solid #FFD9AE;color:#7A3E00;font-weight:700;font-size:14px;padding:8px 13px;border-radius:999px}
+
+/* === FIX v3 — tap par orange na hate + zyada visible animation + bade akshar === */
+/* TAP FIX: Android tap-highlight (grey flash) orange ko dhak deta tha; :active se rang na badle */
+.stickybar a{-webkit-tap-highlight-color:transparent;tap-highlight-color:transparent}
+.stickybar a.tab-active:active,.stickybar a.tab-active:focus,.stickybar a.tab-active:focus-visible{color:#fff;outline:none}
+.stickybar a:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+/* tabIn fill 'both' press-scale ko override kar deta tha — 'backwards' se press bounce kaam karega */
+.stickybar a{animation:tabIn .5s cubic-bezier(.34,1.56,.64,1) backwards}
+/* Pill pehli baar bina slide ke turant sahi jagah aaye (galat jagah se slide = orange gayab lagta tha) */
+.bar-pill.no-anim{transition:none!important}
+/* JS/pill fail ho bhi jaye to active tab CSS se hi orange rahe; JS ready hote hi sliding pill sambhal leta hai */
+body:not(.pill-ready) .stickybar a.tab-active{background:linear-gradient(150deg,#FF7D26,var(--saffron) 55%,var(--saffron-d))!important;color:#fff!important}
+/* Orange pill khud chamke — clearly visible pulse */
+@keyframes pillGlow{0%,100%{box-shadow:0 10px 22px -6px rgba(242,98,15,.65),inset 0 1px 0 rgba(255,255,255,.45),inset 0 -3px 8px rgba(0,0,0,.18)}50%{box-shadow:0 10px 26px -4px rgba(242,98,15,.85),0 0 0 4px rgba(255,176,32,.28),inset 0 1px 0 rgba(255,255,255,.45),inset 0 -3px 8px rgba(0,0,0,.18)}}
+.bar-pill{animation:pillGlow 2.8s ease-in-out infinite}
+/* ZYADA VISIBLE ANIMATION — ticker tez (32s→16s), float bada, WhatsApp button par shine sweep */
+.ticker-track{animation-duration:16s}
+@keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-13px)}}
+.float-card{animation-duration:4s}
+.hero-cta .btn-wa{position:relative;overflow:hidden}
+.hero-cta .btn-wa::after{content:"";position:absolute;top:0;left:-80%;width:50%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-20deg);animation:shineSweep 2.8s ease-in-out infinite;pointer-events:none}
+@keyframes shineSweep{0%{left:-80%}55%,100%{left:130%}}
+@media (prefers-reduced-motion: reduce){.bar-pill,.hero-cta .btn-wa::after{animation:none}}
+/* BADE AKSHAR — Teacher / Director / Experience */
+.teacher-card h2{font-size:clamp(28px,7vw,36px)!important;line-height:1.25}
+.teacher-card h2 .hi{font-size:1.12em}
+.teacher-card .tag{font-size:15px;padding:9px 15px}
+.teacher-card p{font-size:17px;line-height:1.65}
+.teacher-card p b{font-size:18px}
+.exp-chip{font-size:16px;padding:10px 16px}
+.addr h2{font-size:clamp(26px,6.5vw,32px)}
+.addr p{font-size:16.5px;line-height:1.65}
+.addr p b{font-size:18px}
+.foot-teacher{font-size:17px!important;line-height:1.8}
+.foot-teacher b{font-size:19px}
+
+.gal-cat{font-size:clamp(21px,5vw,26px);font-weight:800;margin:6px 0 16px}
+.gal-cat::after{content:"";display:block;width:44px;height:4px;border-radius:99px;background:linear-gradient(90deg,var(--saffron),var(--amber));margin-top:8px}
+.gal-link{display:block}
+.gal-link img{transition:transform .35s ease}
+.gal-link:active img{transform:scale(1.04)}
