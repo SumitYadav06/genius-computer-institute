@@ -265,22 +265,36 @@
   }, {threshold:.1}) : null;
   document.querySelectorAll(".reveal").forEach(function(el){ if (io) io.observe(el); else el.classList.add("in"); });
 
-  /* ---- Bottom tab bar: active page (multi-page site) ---- */
+  /* ---- Premium bottom bar: sliding saffron pill + press bounce ---- */
   var pageId = document.body.getAttribute("data-page") || "top";
-  var tabByPage = {"top":"top","courses":"courses","typing":"typing","enquiry":"enquiry"}; /* contact has no tab in the bar, so none is active there */
+  var tabByPage = {"top":"top","courses":"courses","typing":"typing","enquiry":"enquiry"}; /* contact has no tab, pill hides */
+  var bar = document.querySelector(".stickybar"), pill = document.querySelector(".bar-pill");
+  function movePill(){
+    if (!bar || !pill) return;
+    var active = bar.querySelector("a.tab-active");
+    if (!active){ pill.classList.add("hide"); return; }
+    pill.classList.remove("hide");
+    pill.style.left = active.offsetLeft + "px";
+    pill.style.width = active.offsetWidth + "px";
+  }
   document.querySelectorAll(".stickybar a[data-tab]").forEach(function(a){
-    /* clear any hard-coded tab-active from HTML first, then set the real one */
     a.classList.remove("tab-active");
     var want = tabByPage[pageId];
     if (want) a.classList.toggle("tab-active", a.getAttribute("data-tab") === want);
   });
-  /* Press / bounce feedback on bottom-bar tabs (light, 180ms) */
   document.querySelectorAll(".stickybar a").forEach(function(a){
     a.addEventListener("click", function(){
       a.classList.add("pressed");
-      window.setTimeout(function(){ a.classList.remove("pressed"); }, 180);
+      window.setTimeout(function(){ a.classList.remove("pressed"); }, 200);
+      if (a.hasAttribute("data-tab")){
+        document.querySelectorAll(".stickybar a.tab-active").forEach(function(x){ x.classList.remove("tab-active"); });
+        a.classList.add("tab-active"); movePill();
+      }
     });
   });
+  window.addEventListener("resize", movePill);
+  window.addEventListener("load", function(){ window.setTimeout(movePill, 60); });
+  movePill();
 
   var yr = $("yr"); if (yr) yr.textContent = new Date().getFullYear();
   var tt = $("tickerTrack"); if (tt) tt.innerHTML += tt.innerHTML;

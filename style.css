@@ -432,3 +432,28 @@ main{animation:pageIn .45s ease both}
 .feat,.step,.gal figure{transition:transform .25s ease,box-shadow .25s ease}
 .feat:hover,.step:hover{transform:translateY(-3px)}
 @media (prefers-reduced-motion: reduce){.float-card,.brand-logo,.hero::before,.hero-cta .btn-wa,.course{animation:none}}
+
+/* === PREMIUM BOTTOM BAR v2 — floating glass pill bar, sliding saffron indicator === */
+.stickybar{left:10px;right:10px;bottom:calc(10px + env(safe-area-inset-bottom));width:auto;border-radius:24px;padding:6px;background:color-mix(in srgb,var(--surface) 82%,transparent);backdrop-filter:blur(22px) saturate(1.8);-webkit-backdrop-filter:blur(22px) saturate(1.8);border:1px solid color-mix(in srgb,#fff 55%,var(--line));box-shadow:0 18px 40px -12px rgba(10,23,62,.45),0 2px 8px rgba(10,23,62,.12),inset 0 1px 0 rgba(255,255,255,.6);animation:barRise .6s cubic-bezier(.22,1,.36,1) .15s both;overflow:visible}
+.bar-pill{position:absolute;top:6px;bottom:6px;left:6px;width:60px;border-radius:18px;background:linear-gradient(150deg,#FF7D26,var(--saffron) 55%,var(--saffron-d));box-shadow:0 10px 22px -6px rgba(242,98,15,.65),inset 0 1px 0 rgba(255,255,255,.45),inset 0 -3px 8px rgba(0,0,0,.18);transition:left .38s cubic-bezier(.22,1,.36,1),width .38s cubic-bezier(.22,1,.36,1),opacity .25s ease;z-index:0;pointer-events:none}
+.bar-pill.hide{opacity:0}
+.stickybar a{position:relative;z-index:1;background:transparent!important;border-radius:18px;min-height:56px;padding:7px 2px 8px;gap:3px}
+.stickybar a .tab-ic{display:grid;place-items:center;width:26px;height:26px;position:relative}
+.stickybar a .tab-ic svg{width:22px;height:22px;transition:transform .28s cubic-bezier(.34,1.56,.64,1)}
+.stickybar a .tab-lb{font-size:11.5px;line-height:1;letter-spacing:.01em}
+.stickybar a.tab-active{color:#fff}
+.stickybar a.tab-active::before{display:none}
+.stickybar a.tab-active .tab-ic svg{transform:translateY(-1px) scale(1.16)}
+.stickybar a.tab-active .tab-lb{font-weight:800}
+.stickybar a.call{color:var(--navy)}
+.stickybar a.call .tab-ic{color:var(--wa)}
+@keyframes tabIn{from{opacity:0;transform:translateY(14px) scale(.9)}to{opacity:1;transform:none}}
+.stickybar a{animation:tabIn .5s cubic-bezier(.34,1.56,.64,1) both}
+.stickybar a:nth-child(2){animation-delay:.24s}.stickybar a:nth-child(3){animation-delay:.30s}.stickybar a:nth-child(4){animation-delay:.36s}.stickybar a:nth-child(5){animation-delay:.42s}.stickybar a:nth-child(6){animation-delay:.48s}
+.stickybar a:hover .tab-ic svg{transform:translateY(-2px) scale(1.1)}
+.stickybar a:active,.stickybar a.pressed{transform:scale(.85)}
+.stickybar a:active .tab-ic svg,.stickybar a.pressed .tab-ic svg{transform:scale(1.22)}
+.tab-badge{position:absolute;top:-2px;right:-4px;width:9px;height:9px;border-radius:50%;background:var(--amber);border:2px solid var(--surface);animation:badgePulse 1.8s infinite}
+@keyframes badgePulse{0%{box-shadow:0 0 0 0 rgba(255,176,32,.55)}70%{box-shadow:0 0 0 6px rgba(255,176,32,0)}100%{box-shadow:0 0 0 0 rgba(255,176,32,0)}}
+@media(max-width:480px){.stickybar{left:8px;right:8px;border-radius:20px}.stickybar a .tab-lb{font-size:10.5px}}
+@media (prefers-reduced-motion: reduce){.stickybar,.stickybar a,.bar-pill,.tab-badge{animation:none!important;transition:none!important}}
