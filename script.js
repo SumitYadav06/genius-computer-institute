@@ -69,11 +69,7 @@
         '<span class="cat">' + c.catLabel + '</span></div>' +
         '<p>' + c.desc + '</p><div class="tags2">' + tagsHtml + '</div>' +
         '<div class="course-actions">' +
-        '<a class="btn btn-wa" target="_blank" rel="noopener" href="' + waLink("Namaste, mujhe " + c.name + " (" + c.full + ") course ki jaankari chahiye — fees aur batch timing bata dein.") + '">' + WA_SVG + 'WhatsApp</a>' +
-        '<button type="button" class="btn btn-ghost pick">Form me Chunein</button></div>';
-      card.querySelector(".pick").addEventListener("click", function(){
-        window.location.href = "admission.html?course=" + encodeURIComponent(c.name);
-      });
+        '<a class="btn btn-wa" target="_blank" rel="noopener" href="' + waLink("Namaste, mujhe " + c.name + " (" + c.full + ") course ki jaankari chahiye — fees aur batch timing bata dein.") + '">' + WA_SVG + 'WhatsApp par Poochhein</a></div>';
       grid.appendChild(card);
     });
   });
@@ -247,6 +243,21 @@
       window.open(waLink(text), "_blank");
     });
   }
+
+  /* ---- Stats count-up (index only): 0 -> target jab dikhe ---- */
+  var counters = document.querySelectorAll("[data-count]");
+  if (counters.length && "IntersectionObserver" in window){
+    var cio = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (!en.isIntersecting) return;
+        var el = en.target; cio.unobserve(el);
+        var target = parseInt(el.getAttribute("data-count"), 10) || 0, start = null;
+        function step(ts){ if (!start) start = ts; var p = Math.min((ts - start) / 900, 1); el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3))); if (p < 1) requestAnimationFrame(step); }
+        requestAnimationFrame(step);
+      });
+    }, {threshold:.4});
+    counters.forEach(function(el){ cio.observe(el); });
+  } else { counters.forEach(function(el){ el.textContent = el.getAttribute("data-count"); }); }
 
   /* ---- Reveal on scroll ---- */
   var io = ("IntersectionObserver" in window) ? new IntersectionObserver(function(entries){
