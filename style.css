@@ -503,3 +503,14 @@ body:not(.pill-ready) .stickybar a.tab-active{background:linear-gradient(150deg,
 .gal-link{display:block}
 .gal-link img{transition:transform .35s ease}
 .gal-link:active img{transform:scale(1.04)}
+
+/* === FIX v4 — teacher card contrast: dark mode me white text white card par dikhta nahi tha === */
+.teacher-card h2{color:#0F1B3D}
+.teacher-card p{color:#3A4A6B}
+.teacher-card p b{color:#0F1B3D}
+@media (prefers-color-scheme: dark){
+ .teacher-card{background:linear-gradient(160deg,#16294F,#0A173E);border-color:#2A4396;box-shadow:0 14px 30px -18px rgba(0,0,0,.6)}
+ .teacher-card h2{color:#F1F4FF}
+ .teacher-card p{color:#C9D5F2}
+ .teacher-card p b{color:#fff}
+}

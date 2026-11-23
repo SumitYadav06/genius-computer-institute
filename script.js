@@ -122,10 +122,10 @@
 
   /* ---- Goal helper (courses page only) ---- */
   var GOALS = {
-    govt:{text:"Aapke liye sahi rahega: <b>CCC + Hindi/English Typing</b> — sarkari form me CCC manga jata hai aur bahut si bhartiyon me typing test bhi hota hai.", course:"CCC"},
-    office:{text:"Aapke liye sahi rahega: <b>Tally Prime + Advance Excel</b> — account aur office data ka kaam. Saath me <b>ADCA</b> kar lein to profile aur mazboot ho jayegi.", course:"Tally Prime"},
-    basic:{text:"Aapke liye sahi rahega: <b>DCA ya BCC</b> se shuruaat — computer ki neev pakki hogi, phir Internet wala hissa roz ke kaam aayega.", course:"DCA"},
-    typing:{text:"Aapke liye sahi rahega: <b>Hindi Typing (Kruti Dev + Mangal) aur English Typing</b> — dono font seekhne se har typing test ke liye taiyaar rahenge.", course:"Hindi Typing — Kruti Dev"}
+    govt:{text:"Sahi rahega: <b>CCC + Hindi/English Typing</b> — sarkari form me CCC manga jata hai aur bahut si bhartiyon me typing test bhi hota hai.", course:"CCC"},
+    office:{text:"Sahi rahega: <b>Tally Prime + Advance Excel</b> — account aur office data ka kaam. Saath me <b>ADCA</b> kar lein to profile aur mazboot ho jayegi.", course:"Tally Prime"},
+    basic:{text:"Sahi rahega: <b>DCA ya BCC</b> se shuruaat — computer ki neev pakki hogi, phir Internet wala hissa roz ke kaam aayega.", course:"DCA"},
+    typing:{text:"Sahi rahega: <b>Hindi Typing (Kruti Dev + Mangal) aur English Typing</b> — dono font seekhne se har typing test ke liye taiyaar rahenge.", course:"Hindi Typing — Kruti Dev"}
   };
   var goalOut = $("goalOut");
   if (goalOut){
