@@ -1,3 +1,19 @@
+/* ============================================================================
+   Genius Computer Institute — shared site script (GitHub Pages)
+   Structure (future-proof, aage badhane ke liye):
+     - Config: WA number upar (WA constant) — number badle to sirf yahin badlein.
+     - COURSES array: naya course jodna ho to yahin ek entry jodein
+       {name, full, group, catLabel, icon, cls, desc, tags} — course cards,
+       filter, search, goal helper aur enquiry dropdown khud ban jayenge.
+       group sirf inme se ek ho: "diploma" | "basic" | "job" | "typing".
+     - Naya page jodna ho to: <pagename>.html banayein, <head> me style.css,
+       end me script.js link karein, <body data-page="<pagename>"> rakhein,
+       header/nav + footer + stickybar copy karein, aur neeche tabByPage
+       me us page ka data-tab jodein. Nav links relative rakhein
+       (index.html, courses.html ...) — GitHub Pages root se serve hota hai.
+     - Koi fees/timing yahan hard-code nahi hai — wo hamesha
+       Call / WhatsApp (8004353554) par confirm karne ko likha jata hai.
+   ============================================================================ */
 (function(){
   "use strict";
   var WA = "918004353554";
@@ -240,9 +256,19 @@
 
   /* ---- Bottom tab bar: active page (multi-page site) ---- */
   var pageId = document.body.getAttribute("data-page") || "top";
-  var tabByPage = {"top":"top","courses":"courses","typing":"typing","enquiry":"enquiry","contact":"contact"};
+  var tabByPage = {"top":"top","courses":"courses","typing":"typing","enquiry":"enquiry"}; /* contact has no tab in the bar, so none is active there */
   document.querySelectorAll(".stickybar a[data-tab]").forEach(function(a){
-    a.classList.toggle("tab-active", a.getAttribute("data-tab") === (tabByPage[pageId] || "top"));
+    /* clear any hard-coded tab-active from HTML first, then set the real one */
+    a.classList.remove("tab-active");
+    var want = tabByPage[pageId];
+    if (want) a.classList.toggle("tab-active", a.getAttribute("data-tab") === want);
+  });
+  /* Press / bounce feedback on bottom-bar tabs (light, 180ms) */
+  document.querySelectorAll(".stickybar a").forEach(function(a){
+    a.addEventListener("click", function(){
+      a.classList.add("pressed");
+      window.setTimeout(function(){ a.classList.remove("pressed"); }, 180);
+    });
   });
 
   var yr = $("yr"); if (yr) yr.textContent = new Date().getFullYear();
