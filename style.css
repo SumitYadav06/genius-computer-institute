@@ -133,9 +133,9 @@
   .tab[aria-pressed="true"]{background:linear-gradient(160deg,#26479F,var(--navy) 55%,var(--navy2));border-color:transparent;color:#fff;box-shadow:0 10px 20px -10px rgba(15,27,61,.55),inset 0 1px 0 rgba(255,255,255,.35)}
   .search{position:relative;width:100%}
   @media(min-width:760px){.search{margin-left:auto;flex:1 1 200px;max-width:320px}}
-  .search input{width:100%;font:inherit;font-size:16px;padding:12px 14px 12px 48px;border-radius:12px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink)}
-  .search input::placeholder{color:#5B6B8C;opacity:1}
-  .search svg{position:absolute;left:15px;top:50%;transform:translateY(-50%);width:18px;height:18px;color:var(--muted);pointer-events:none}
+  .search input{width:100%;font:inherit;font-size:16px;padding:12px 14px 12px 52px;border-radius:12px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink)}
+  .search input::placeholder{color:var(--muted);opacity:1}
+  .search svg{position:absolute;left:16px;top:50%;transform:translateY(-50%);width:18px;height:18px;color:var(--muted);pointer-events:none}
   .course-grid{display:grid;gap:14px;grid-template-columns:1fr}
   @media(min-width:640px){.course-grid{grid-template-columns:repeat(2,1fr)}}
   @media(min-width:1020px){.course-grid{grid-template-columns:repeat(3,1fr)}}
@@ -523,3 +523,10 @@ body:not(.pill-ready) .stickybar a.tab-active{background:linear-gradient(150deg,
 /* Contact page: ab ek hi Contact Details card — poori width */
 .contact-grid{grid-template-columns:1fr!important}
 .contact-grid .addr{grid-column:1/-1}
+
+/* === Load animations: phone digits + fees pop (har refresh par chalte hain) === */
+@keyframes digitIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.tel-d{display:inline-block;animation:digitIn .35s cubic-bezier(.22,1,.36,1) both}
+@keyframes feePop{0%{opacity:0;transform:scale(.85)}60%{transform:scale(1.06)}100%{opacity:1;transform:scale(1)}}
+.highlight-band b{display:inline-block;animation:feePop .5s cubic-bezier(.22,1,.36,1) .3s both}
+@media (prefers-reduced-motion: reduce){.tel-d,.highlight-band b{animation:none}}

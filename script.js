@@ -244,6 +244,20 @@
     });
   }
 
+  /* ---- Phone number digits animate on every load ---- */
+  document.querySelectorAll('a[href^="tel:"]').forEach(function(a){
+    var txt = a.textContent || "";
+    if (!/^[0-9 ]+$/.test(txt.trim()) || a.querySelector(".tel-d")) return;
+    a.innerHTML = "";
+    var i = 0;
+    txt.split("").forEach(function(ch){
+      var s = document.createElement("span");
+      s.className = "tel-d"; s.textContent = ch;
+      s.style.animationDelay = (i * 0.045) + "s";
+      a.appendChild(s); i++;
+    });
+  });
+
   /* ---- Stats count-up (index only): 0 -> target jab dikhe ---- */
   var counters = document.querySelectorAll("[data-count]");
   if (counters.length && "IntersectionObserver" in window){
