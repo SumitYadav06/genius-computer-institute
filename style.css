@@ -133,9 +133,9 @@
   .tab[aria-pressed="true"]{background:linear-gradient(160deg,#26479F,var(--navy) 55%,var(--navy2));border-color:transparent;color:#fff;box-shadow:0 10px 20px -10px rgba(15,27,61,.55),inset 0 1px 0 rgba(255,255,255,.35)}
   .search{position:relative;width:100%}
   @media(min-width:760px){.search{margin-left:auto;flex:1 1 200px;max-width:320px}}
-  .search input{width:100%;font:inherit;font-size:16px;padding:12px 14px 12px 52px;border-radius:12px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink)}
+  .search input{width:100%;font:inherit;font-size:16px;padding:12px 52px 12px 16px;border-radius:12px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink)}
   .search input::placeholder{color:var(--muted);opacity:1}
-  .search svg{position:absolute;left:16px;top:50%;transform:translateY(-50%);width:18px;height:18px;color:var(--muted);pointer-events:none}
+  .search svg{position:absolute;right:16px;left:auto;top:50%;transform:translateY(-50%);width:18px;height:18px;color:var(--muted);pointer-events:none}
   .course-grid{display:grid;gap:14px;grid-template-columns:1fr}
   @media(min-width:640px){.course-grid{grid-template-columns:repeat(2,1fr)}}
   @media(min-width:1020px){.course-grid{grid-template-columns:repeat(3,1fr)}}
@@ -301,8 +301,13 @@
   @media(max-width:759px){body{padding-bottom:78px} section{scroll-margin-bottom:90px}}
   @media(min-width:760px){.stickybar{display:none}}
 
-  .reveal{opacity:0;transform:translateY(18px);transition:opacity .55s ease, transform .55s ease}
+  .reveal{opacity:0;transform:translateY(26px) scale(.98);transition:opacity .7s ease, transform .7s cubic-bezier(.22,1,.36,1)}
   .reveal.in{opacity:1;transform:none}
+  .reveal:nth-child(2){transition-delay:.08s}
+  .reveal:nth-child(3){transition-delay:.16s}
+  .reveal:nth-child(4){transition-delay:.24s}
+  .reveal:nth-child(5){transition-delay:.32s}
+  .reveal:nth-child(6){transition-delay:.4s}
   @media (prefers-reduced-motion: reduce){.reveal{opacity:1;transform:none;transition:none}}
 
 /* === RESPONSIVE FIX: 390px vertical mobile / 1280px horizontal desktop === */
@@ -530,3 +535,23 @@ body:not(.pill-ready) .stickybar a.tab-active{background:linear-gradient(150deg,
 @keyframes feePop{0%{opacity:0;transform:scale(.85)}60%{transform:scale(1.06)}100%{opacity:1;transform:scale(1)}}
 .highlight-band b{display:inline-block;animation:feePop .5s cubic-bezier(.22,1,.36,1) .3s both}
 @media (prefers-reduced-motion: reduce){.tel-d,.highlight-band b{animation:none}}
+
+/* === Full-page animation: tabs, search, icons, gallery, buttons (har refresh par) === */
+.search{animation:heroIn .5s cubic-bezier(.22,1,.36,1) both}
+.tab{animation:cardIn .5s cubic-bezier(.22,1,.36,1) both}
+.tab:nth-child(2){animation-delay:.06s}
+.tab:nth-child(3){animation-delay:.12s}
+.tab:nth-child(4){animation-delay:.18s}
+.tab:nth-child(5){animation-delay:.24s}
+.feat .ic,.course .ic{animation:floatY 4s ease-in-out infinite}
+.feat:nth-child(2) .ic,.course:nth-child(2) .ic{animation-delay:.5s}
+.feat:nth-child(3) .ic,.course:nth-child(3) .ic{animation-delay:1s}
+.gal figure img,.gal-link img{transition:transform .5s ease}
+.gal figure:hover img,.gal-link:hover img{transform:scale(1.05)}
+.btn:active{transform:scale(.97)}
+.exp-chip{animation:cardIn .45s cubic-bezier(.22,1,.36,1) both}
+.exp-chip:nth-child(2){animation-delay:.08s}
+.exp-chip:nth-child(3){animation-delay:.16s}
+.exp-chip:nth-child(4){animation-delay:.24s}
+.exp-chip:nth-child(5){animation-delay:.32s}
+@media (prefers-reduced-motion: reduce){.search,.tab,.feat .ic,.course .ic,.exp-chip{animation:none}}
