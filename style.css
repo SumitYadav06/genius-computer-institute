@@ -580,3 +580,26 @@ body:not(.pill-ready) .stickybar a.tab-active{background:linear-gradient(150deg,
 @keyframes ghostPulse{0%,100%{box-shadow:0 10px 22px -14px rgba(15,27,61,.35)}50%{box-shadow:0 10px 26px -10px rgba(242,98,15,.55)}}
 .hero-cta .btn-ghost{animation:ghostPulse 2.8s ease-in-out infinite}
 @media (prefers-reduced-motion: reduce){.hero-side,.hero h1 .hl,.sec-head h2::after,.stat,.qa,.hero-cta .btn-ghost,.tag .dot,.hero-side-tag .dot{animation:none}}
+
+/* === LIVE website: har text, har icon hile — continuous motion, har refresh par === */
+@keyframes slowZoom{from{transform:scale(1)}to{transform:scale(1.07)}}
+.hero-media img.main{animation:slowZoom 9s ease-in-out infinite alternate}
+@keyframes logoFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+.hero-logo-card{animation:heroIn .55s cubic-bezier(.22,1,.36,1) both,logoFloat 5s ease-in-out 1s infinite}
+@keyframes ringShake{0%,100%{transform:rotate(0)}10%{transform:rotate(14deg)}20%{transform:rotate(-12deg)}30%{transform:rotate(10deg)}40%{transform:rotate(-8deg)}50%{transform:rotate(0)}}
+.stickybar a.call .tab-ic svg{animation:ringShake 2.2s ease-in-out infinite}
+.qa .ic,.float-card .ic{animation:floatY 4s ease-in-out infinite}
+.qa:nth-child(2) .ic{animation-delay:.6s}
+.qa:nth-child(3) .ic{animation-delay:1.2s}
+.qa:nth-child(4) .ic{animation-delay:1.8s}
+@keyframes tagShine{0%{background-position:0% center}100%{background-position:200% center}}
+.hero-tagline{background:linear-gradient(90deg,var(--navy),var(--saffron),var(--navy));background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:tagShine 4s linear infinite}
+@media (prefers-color-scheme: dark){.hero-tagline{background:linear-gradient(90deg,#C9D5FF,#FFB020,#C9D5FF);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent}}
+@keyframes cardGlow{0%,100%{box-shadow:inset 0 1px 0 rgba(255,255,255,.55),0 8px 20px -10px rgba(15,27,61,.18)}50%{box-shadow:inset 0 1px 0 rgba(255,255,255,.55),0 8px 26px -6px rgba(242,98,15,.45)}}
+.teacher-card{animation:cardGlow 3.5s ease-in-out infinite}
+@keyframes waPulse{0%{box-shadow:0 14px 26px -12px rgba(22,163,74,.65),0 0 0 0 rgba(22,163,74,.4)}70%{box-shadow:0 14px 26px -12px rgba(22,163,74,.65),0 0 0 10px rgba(22,163,74,0)}100%{box-shadow:0 14px 26px -12px rgba(22,163,74,.65),0 0 0 0 rgba(22,163,74,0)}}
+.btn-wa{animation:waPulse 2.6s ease-out infinite}
+footer{animation:heroIn .6s cubic-bezier(.22,1,.36,1) both}
+.course .ic svg,.feat .ic svg{transition:transform .3s ease}
+.course:hover .ic svg,.feat:hover .ic svg{transform:scale(1.18) rotate(-6deg)}
+@media (prefers-reduced-motion: reduce){.hero-media img.main,.hero-logo-card,.stickybar a.call .tab-ic svg,.qa .ic,.float-card .ic,.hero-tagline,.teacher-card,.btn-wa,footer{animation:none}}
